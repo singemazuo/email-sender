@@ -1,0 +1,38 @@
+<mat-expansion-panel class="home-template-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Email Template
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-form-field appearance="fill" class="home-template-panel-content">
+    <textarea matInput [matTextareaAutosize]="true" [matAutosizeMinRows]="min" [matAutosizeMaxRows]="max"></textarea>
+  </mat-form-field>
+</mat-expansion-panel>
+
+<mat-toolbar>
+  <span class="home-spacer"></span>
+  <button mat-button aria-label="Add New Receiver Details">
+    <span>New Receiver</span>
+  </button>
+  <button mat-button aria-label="Clear All Receivers">
+    <span>Clear Receivers</span>
+  </button>
+</mat-toolbar>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="subject">
+    <th mat-header-cell *matHeaderCellDef> Subject </th>
+    <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Position </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+</table>

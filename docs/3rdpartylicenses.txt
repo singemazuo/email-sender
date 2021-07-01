@@ -87,9 +87,13 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/dialog
+
 @angular/material/expansion
 
 @angular/material/form-field
+
+@angular/material/icon
 
 @angular/material/table
 

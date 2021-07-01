@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>New Receiver</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="create-receiver-dialog-form" [formGroup]="receiverForm">
+    <mat-form-field class="create-receiver-dialog-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
+        placeholder="Ex. example@host.com">
+      <mat-error *ngIf="receiverForm.get('email').hasError('email') && !receiverForm.get('email').hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="receiverForm.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="create-receiver-dialog-full-width" appearance="fill">
+      <mat-label>Subject</mat-label>
+      <input type="subject" matInput formControlName="subject" [placeholder]="subjectPlaceholder">
+    </mat-form-field>
+
+    <mat-form-field class="create-receiver-dialog-full-width" appearance="fill">
+      <mat-label>Position</mat-label>
+      <input type="position" matInput formControlName="position" [errorStateMatcher]="matcher"
+        placeholder="Developer">
+      <mat-error *ngIf="receiverForm.get('position').hasError('required')">
+        Position is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="create-receiver-dialog-full-width" appearance="fill">
+      <mat-label>Company</mat-label>
+      <input type="company" matInput formControlName="company" [errorStateMatcher]="matcher"
+        placeholder="ei. Company name">
+      <mat-error *ngIf="receiverForm.get('company').hasError('required')">
+        Company name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="confirm()">Add</button>
+</mat-dialog-actions>

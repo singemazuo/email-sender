@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  emailApiURL: 'https://api.qzone.work/api/send.mail'
 };

@@ -1,4 +1,4 @@
-<mat-expansion-panel class="home-template-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+<mat-expansion-panel class="home-template-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="false">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Email Template
@@ -6,21 +6,28 @@
   </mat-expansion-panel-header>
 
   <mat-form-field appearance="fill" class="home-template-panel-content">
-    <textarea matInput [matTextareaAutosize]="true" [matAutosizeMinRows]="min" [matAutosizeMaxRows]="max"></textarea>
+    <textarea matInput [matTextareaAutosize]="true" [matAutosizeMinRows]="min" [matAutosizeMaxRows]="max">
+
+    </textarea>
   </mat-form-field>
 </mat-expansion-panel>
 
 <mat-toolbar>
+  <button mat-icon-button aria-label="Send email" (click)="send()">
+    <mat-icon>send</mat-icon>
+  </button>
   <span class="home-spacer"></span>
-  <button mat-button aria-label="Add New Receiver Details">
+  <input class="ng-hide" multiple type="file" placeholder="Select resume"/>
+  <button mat-button aria-label="Add New Receiver Details" (click)="openDialog()">
     <span>New Receiver</span>
   </button>
-  <button mat-button aria-label="Clear All Receivers">
+  <button mat-button aria-label="Clear All Receivers" [disabled]="dataSource.length <= 0">
     <span>Clear Receivers</span>
   </button>
 </mat-toolbar>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="home-receiver-table">
+
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
@@ -35,4 +42,12 @@
     <th mat-header-cell *matHeaderCellDef> Position </th>
     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
   </ng-container>
+
+  <ng-container matColumnDef="company">
+    <th mat-header-cell *matHeaderCellDef> Company </th>
+    <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

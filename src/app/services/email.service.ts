@@ -13,15 +13,15 @@ export class EmailService {
   constructor(private http:HttpClient) {
   }
 
-  send(receivers:Array<Receiver>){
-    receivers.forEach(x => {
+  send(receivers:Array<Receiver>, callback?: any){
+    receivers.forEach((x,i) => {
       emailjs.send(environment.emailjsServiceId, environment.emailjsTemplateId, {
         position: x.position,
         subject: x.subject,
         email: x.email,
         company: x.company
       }, environment.emailjsUserId).then(response => {
-        console.log(response);
+        if(callback) callback(i == receivers.length - 1);
       });
     });
   }

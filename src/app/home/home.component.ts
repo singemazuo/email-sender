@@ -34,6 +34,10 @@ export class HomeComponent implements OnInit {
   }
 
   send(){
-    this.emailService.send(this.data);
+    this.emailService.send(this.data, completed => {
+      if (completed) {
+        alert("Mails have been sent!");
+      }
+    });
   }
 }

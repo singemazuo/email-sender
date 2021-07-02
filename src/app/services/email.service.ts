@@ -15,9 +15,14 @@ export class EmailService {
 
   send(receivers:Array<Receiver>, callback?: any){
     receivers.forEach((x,i) => {
+      let isFullname = /^[a-zA-Z]+ [a-zA-Z]+$/.test(x.subject);
+      var subject = x.subject;
+      if (isFullname && x.subject.toLowerCase() !== "hiring manager") {
+        subject = x.subject.split(' ')[0];
+      }
       emailjs.send(environment.emailjsServiceId, environment.emailjsTemplateId, {
         position: x.position,
-        subject: x.subject,
+        subject: subject,
         email: x.email,
         company: x.company
       }, environment.emailjsUserId).then(response => {

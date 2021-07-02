@@ -17,7 +17,7 @@
     <mat-icon>send</mat-icon>
   </button>
   <span class="home-spacer"></span>
-  <input class="ng-hide" multiple type="file" placeholder="Select resume"/>
+  <input class="ng-hide home-attach-file" multiple type="file" placeholder="Select resume" [(ngModel)]="attachment"/>
   <button mat-button aria-label="Add New Receiver Details" (click)="openDialog()">
     <span>New Receiver</span>
   </button>

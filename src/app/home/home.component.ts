@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   dataSource = new BehaviorSubject([]);
   min = 6;
   max = 30;
+  attachment:any;
 
   constructor(private emailService:EmailService,private dialog: MatDialog, private cdf:ChangeDetectorRef) { }
 
@@ -33,7 +34,6 @@ export class HomeComponent implements OnInit {
   }
 
   send(){
-    var rec = this.data.pop();
-    this.emailService.send(rec, Constants.DEFAULT_EMAIL_CONTENT);
+    this.emailService.send(this.data);
   }
 }
